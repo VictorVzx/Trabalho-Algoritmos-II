@@ -34,54 +34,70 @@ void menuInterface(){
 
 void cadastrarEstudante(Estudante *vetor, int *qtd){
     int contEstudantes = *qtd;
+    int exists = 0;
 
-    for(int i = 0; i < contEstudantes; i++){
-        for(int j=i+1; j < contEstudantes; j++){
-            do{
-                printf("Digite o primeiro nome do estudante: ");
-                scanf("%s", vetor[contEstudantes].primeiroNome);
+    char nomeAux[50], segundoNomeAux[50];
+    float rendimentoAux;
 
-                printf("Digite o ultimo nome do estudante: ");
-                scanf("%s", vetor[contEstudantes].ultimoNome);
-
-                printf("Digite o rendimento academico do estudante: ");
-                scanf("%f", &vetor[contEstudantes].rendimentoAcademico);
-
-                (*qtd)++;
-
-                if(strcmp(vetor[i].primeiroNome, vetor[j].primeiroNome) == 0 && strcmp(vetor[i].ultimoNome, vetor[j].ultimoNome) == 0){
-                    printf("Este estudante já existe, tente novamente.");
+    do{
+        printf("Digite o nome do aluno: ");
+        scanf("%s", nomeAux);
+        printf("Digite o ultimo nome do aluno: ");
+        scanf("%s", segundoNomeAux);
+        printf("Digite o rendimento academico do aluno: ");
+        scanf("%f", &rendimentoAux);
+    
+        if(contEstudantes > 0){
+            for(int i = 0; i < contEstudantes; i++){
+                if(strcmp(vetor[i].primeiroNome, nomeAux) == 0 && strcmp(vetor[i].ultimoNome, segundoNomeAux) == 0){
+                    exists = 1;
                 }
-                
-            }while(strcmp(vetor[i].primeiroNome, vetor[j].primeiroNome) != 0 && strcmp(vetor[i].ultimoNome, vetor[j].ultimoNome)!= 0);
+            }
         }
-    }
+
+        if(exists == 1){
+            printf("Este estudante já está cadastrado, tente novamente.\n");
+        }else{
+            strcpy(vetor[contEstudantes].primeiroNome, nomeAux);
+            strcpy(vetor[contEstudantes].ultimoNome, segundoNomeAux);
+            vetor[contEstudantes].rendimentoAcademico = rendimentoAux;
+        }
+
+    }while(exists == 1);
 }
 
 void cadastrarFuncionario(Funcionario *vetor, int *qtd){
     int contFuncionarios = *qtd;
+    int exists = 0;
 
-    for(int i = 0; i < contFuncionarios; i++){
-        for(int j = i+1; j < contFuncionarios; j++){
-            do{
-                printf("Digite o primeiro nome do funcionario: ");
-                scanf("%s", vetor[contFuncionarios].primeiroNome);
-
-                printf("Digite o ultimo nome do funcionario: ");
-                scanf("%s", vetor[contFuncionarios].ultimoNome);
-
-                printf("Digite o salario do funcionario: ");
-                scanf("%lf", &vetor[contFuncionarios].salario);
-
-                (*qtd)++;
-
-                if(strcmp(vetor[i].primeiroNome, vetor[j].primeiroNome) == 0 && strcmp(vetor[i].ultimoNome, vetor[j].ultimoNome)== 0){
-                    printf("Este funcionário já existe, tente novamente.");
+    char nomeAux[50], segundoNomeAux[50];
+    double salarioAux;
+   
+    do{
+        printf("Digite o nome do funcionario: ");
+        scanf("%s", nomeAux);
+        printf("Digite o ultimo nome do funcionario: ");
+        scanf("%s", segundoNomeAux);
+        printf("Digite o salario do funcionario: ");
+        scanf("%lf", &salarioAux);
+    
+        if(contFuncionarios > 0){
+            for(int i = 0; i < contFuncionarios; i++){
+                if(strcmp(vetor[i].primeiroNome, nomeAux) == 0 && strcmp(vetor[i].ultimoNome, segundoNomeAux) == 0){
+                    exists = 1;
                 }
-
-            }while(strcmp(vetor[i].primeiroNome, vetor[j].primeiroNome) != 0 && strcmp(vetor[i].ultimoNome, vetor[j].ultimoNome)!= 0);
+            }
         }
-    }
+
+        if(exists == 1){
+            printf("Este funcionario já está cadastrado, tente novamente.\n");
+        }else{
+            strcpy(vetor[contFuncionarios].primeiroNome, nomeAux);
+            strcpy(vetor[contFuncionarios].ultimoNome, segundoNomeAux);
+            vetor[contFuncionarios].salario = salarioAux;
+        }
+
+    }while(exists == 1);
 }
 
 void mostrarTodosEstudantes(Estudante *estudantes, int *qtdEstudantes){
