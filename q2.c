@@ -145,6 +145,34 @@ void mostrarUmEstudante(Estudante *vetor, int *qtd){
     }while(exists == 0);
 }
 
+void mostrarUmFuncionario(Funcionario *vetor, int *qtd){
+    int exists = 0;
+
+    char nome[50], ultimoNome[50];
+
+    do{
+        printf("Digite o primeiro nome do funcionario que deseja buscar: ");
+        scanf("%s", nome);
+        pritnf("Digite o ultimo nome do funcionario que deseja buscar: ");
+        scanf("%s", ultimoNome);
+
+        for(int i = 0; i < *qtd; i++){
+            if(strcmp(vetor[i].primeiroNome, nome) == 0 && strcmp(vetor[i].ultimoNome, ultimoNome) == 0){
+                exists = 1;
+                printf("Primeiro nome: %s\n", vetor[i].primeiroNome);
+                printf("Ultimo nome: %s", vetor[i].ultimoNome);
+                printf("Rendimento academico: %.2lf", vetor[i].salario);
+            }
+        }
+    
+        if(exists == 0){
+            system("clear");
+            printf("Funcionario não encontrado, tente novamente\n");
+        }
+
+    }while(exists == 0);
+}
+
 int main(){
     Estudante estudantes[MAX_ESTUDANTES];
 
