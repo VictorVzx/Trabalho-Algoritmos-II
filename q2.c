@@ -45,6 +45,7 @@ void cadastrarEstudante(Estudante *vetor, int *qtd){
     if(*qtd == MAX_ESTUDANTES){
         system("clear");
         printf("Número máximo de estudantes cadastrados, não é possível cadastrar mais estudantes.\n");
+        aguardarEnter();
         return;
     }
 
@@ -87,6 +88,7 @@ void cadastrarFuncionario(Funcionario *vetor, int *qtd){
     if(*qtd == MAX_FUNCIONARIOS){
         system("clear");
         printf("Número máximo de funcionarios cadastrados, não é possivel cadastrar mais funcionarios.\n");
+        aguardarEnter();
         return;
     }
 
@@ -143,6 +145,11 @@ void mostrarTodosEstudantes(Estudante *estudantes, int *qtdEstudantes){
 
 
 void mostrarTodosFuncionarios(Funcionario *funcionarios, int *qtdFuncionarios){
+    if(*qtdFuncionarios == 0){
+        printf("Nenhum funcionario cadastrado.\n");
+        return;
+    }
+
     for(int i = 0; i < *qtdFuncionarios; i++){
         printf("Funcionario %d\n", i+1);
         printf("Primeiro nome: %s\n", funcionarios[i].primeiroNome);
@@ -174,9 +181,9 @@ void mostrarUmEstudante(Estudante *vetor, int *qtd){
                 printf("\n+----------------------------------+\n");
                 printf("|       DADOS DO ESTUDANTE         |\n");
                 printf("+----------------------------------+\n");
-                printf("| Primeiro nome: %-18s |\n", vetor[i].primeiroNome);
-                printf("| Ultimo nome:   %-18s |\n", vetor[i].ultimoNome);
-                printf("| Rendimento:    %-18.1f |\n", vetor[i].rendimentoAcademico);
+                printf("| Primeiro nome: %s                |\n", vetor[i].primeiroNome);
+                printf("| Ultimo nome:   %s                |\n", vetor[i].ultimoNome);
+                printf("| Rendimento:    %.1f              |\n", vetor[i].rendimentoAcademico);
                 printf("+----------------------------------+\n");
             }
         }
@@ -202,6 +209,7 @@ void mostrarUmFuncionario(Funcionario *vetor, int *qtd){
         printf("Ultimo nome: ");
         scanf("%s", ultimoNome);
 
+        // sai da funcao (retorna o vazio)
         if(strcmp(nome, "SAIR") == 0 || strcmp(ultimoNome, "SAIR") == 0){
             return;
         }
@@ -212,9 +220,9 @@ void mostrarUmFuncionario(Funcionario *vetor, int *qtd){
                 printf("\n+----------------------------------+\n");
                 printf("|      DADOS DO FUNCIONARIO        |\n");
                 printf("+----------------------------------+\n");
-                printf("| Primeiro nome: %-18s |\n", vetor[i].primeiroNome);
-                printf("| Ultimo nome:   %-18s |\n", vetor[i].ultimoNome);
-                printf("| Salario:       R$ %-15.2lf |\n", vetor[i].salario);
+                printf("| Primeiro nome: %s                |\n", vetor[i].primeiroNome);
+                printf("| Ultimo nome:   %s                |\n", vetor[i].ultimoNome);
+                printf("| Salario:       R$ %.2lf          |\n", vetor[i].salario);
                 printf("+----------------------------------+\n");
             }
         }
@@ -228,6 +236,7 @@ void mostrarUmFuncionario(Funcionario *vetor, int *qtd){
 }
 
 int main(){
+    // vetores de funcionarios e estudantes
     Estudante estudantes[MAX_ESTUDANTES];
     Funcionario funcionarios[MAX_FUNCIONARIOS];
 
@@ -244,6 +253,7 @@ int main(){
             if(option < 1 || option > 7){
                 system("clear");
                 printf("Entrada inválida, tente novamente\n");
+                aguardarEnter();
             }
     
         }while(option < 1 || option > 7);
@@ -273,15 +283,13 @@ int main(){
                 break;
             case 7: 
                 system("clear"); 
-                printf("Programa encerrado\n"); 
+                printf("Programa encerrado.\n"); 
                 break;
             default: 
                 printf("Invalido\n");
                 break;
         }
     }while(option != 7);
-
-    printf("%d", qtdEstudantes);
 
     return 0;
 }
