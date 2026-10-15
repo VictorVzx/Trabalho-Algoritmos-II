@@ -26,8 +26,8 @@ void menuInterface(){
     printf("|  2. Cadastrar Funcionario                   |\n");
     printf("|  3. Ver todos os Estudantes                 |\n");
     printf("|  4. Ver todos os Funcionarios               |\n");
-    printf("|  5. Ver dados de um Funcionario             |\n");
-    printf("|  6. Ver dados de um Estudante               |\n");
+    printf("|  5. Ver dados de um Estudante               |\n");
+    printf("|  6. Ver dados de um Funcionario             |\n");
     printf("+---------------------------------------------+\n");
     printf("Opcao: ");
 }
@@ -90,6 +90,7 @@ void cadastrarFuncionario(Funcionario *vetor, int *qtd){
         }
 
         if(exists == 1){
+            system("clear");
             printf("Este funcionario já está cadastrado, tente novamente.\n");
         }else{
             strcpy(vetor[contFuncionarios].primeiroNome, nomeAux);
@@ -114,6 +115,34 @@ void mostrarTodosFuncinarios(Funcionario *funcionarios, int *qtdFuncionarios){
         printf("Ultimo nome: %s", funcionarios[i].ultimoNome);
         printf("Salario: %.2lf", funcionarios[i].salario);
     }
+}
+
+void mostrarUmEstudante(Estudante *vetor, int *qtd){
+    int exists = 0;
+
+    char nome[50], ultimoNome[50];
+
+    do{
+        printf("Digite o primeiro nome do estudante que deseja buscar: ");
+        scanf("%s", nome);
+        pritnf("Digite o ultimo nome do estudante que deseja buscar: ");
+        scanf("%s", ultimoNome);
+
+        for(int i = 0; i < *qtd; i++){
+            if(strcmp(vetor[i].primeiroNome, nome) == 0 && strcmp(vetor[i].ultimoNome, ultimoNome) == 0){
+                exists = 1;
+                printf("Primeiro nome: %s\n", vetor[i].primeiroNome);
+                printf("Ultimo nome: %s", vetor[i].ultimoNome);
+                printf("Rendimento academico: %.1f", vetor[i].rendimentoAcademico);
+            }
+        }
+    
+        if(exists == 0){
+            system("clear");
+            printf("Estudante não encontrado, tente novamente\n");
+        }
+
+    }while(exists == 0);
 }
 
 int main(){
