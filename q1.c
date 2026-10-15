@@ -66,6 +66,17 @@ void substituir(char *frase, char *palavraAlvo, char *novaPalavra) {
     frase[i] = '\0';
 }
 
+void removerNewline(char *str) {
+    int i = 0;
+    while (str[i] != '\0') {
+        if (str[i] == '\n') {
+            str[i] = '\0';
+            break;
+        }
+        i++;
+    }
+}
+
 int main(){
     char frase[100], palavraAlvo[30], novaPalavra[30];
     
@@ -74,9 +85,11 @@ int main(){
 
     printf("Digite uma palavra alvo: ");
     fgets(palavraAlvo, sizeof(palavraAlvo), stdin);
+    removerNewline(palavraAlvo);
 
-    printf("Digite uma nova palavra");
+    printf("Digite uma nova palavra: ");
     fgets(novaPalavra, sizeof(novaPalavra), stdin);
+    removerNewline(novaPalavra);
 
     printf("[Antes]: %s", frase);
 
