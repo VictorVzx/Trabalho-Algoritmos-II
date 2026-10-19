@@ -31,9 +31,11 @@ int main() {
     for (int i = 0; i < L; i++) {
         for (int j = 0; j < C; j++) {
             printf ("\nQuantidade de minhocas na posição %dx%d do campo:", i + 1, j + 1);
-            while (scanf("%d", &campoMinhoca[i][j]) < 0){
+            scanf("%d", &campoMinhoca[i][j]);
+            while (campoMinhoca[i][j] < 0){
                 printf ("\nERRO!: O valor digitado não pode ser negativo, digite outro número novamente.");
                 printf ("\nQuantidade de minhocas na posição %dx%d do campo:", i + 1, j + 1);
+                scanf("%d", &campoMinhoca[i][j]);
             }
         }
     }
